@@ -12,7 +12,7 @@ object Versions {
     val cardview = "1.0.0"
     val recyclerview = "1.1.0"
     val viewpager = "1.0.0"
-    val lifecycle = "2.2.0-rc03"
+    val lifecycle = "2.2.0"
 
     val kotlin = "1.3.50"
     val coroutines = "1.3.2"
@@ -25,9 +25,10 @@ object Versions {
 
     val coil = "0.9.1"
 
-    val junit = "4.13-beta-3"
-    val runner = "1.3.0-alpha03"
-    val espresso = "3.3.0-alpha03"
+    val junit = "4.12"
+    val test_extension = "1.1.0"
+    val test_runner = "1.2.0"
+    val test_espresso = "3.2.0"
 }
 
 object Deps {
@@ -38,10 +39,9 @@ object Deps {
     val cardview = "androidx.cardview:cardview:${Versions.cardview}"
     val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
 
-    val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    val lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     val lifecycle_common = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
     val lifecycle_viewmodel_extension ="androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    val lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
 
     val kotlin_standard = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     val coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
@@ -50,6 +50,7 @@ object Deps {
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     val retrofit_converter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     val okhttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
+    val okhttp3_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
 
     val material = "com.google.android.material:material:${Versions.material}"
     val dagger = "com.google.dagger:dagger:${Versions.dagger}"
@@ -58,6 +59,7 @@ object Deps {
     val coil = "io.coil-kt:coil:${Versions.coil}"
 
     val junit = "junit:junit:${Versions.junit}"
-    val runner = "androidx.test:runner:${Versions.runner}"
-    val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    val test_extension = "androidx.test.ext:junit:${Versions.test_extension}"
+    val test_runner = "androidx.test:runner:${Versions.test_runner}"
+    val test_espresso = "androidx.test.espresso:espresso-core:${Versions.test_espresso}"
 }

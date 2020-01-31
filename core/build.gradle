@@ -1,34 +1,25 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Sdk.compile
     buildToolsVersion "29.0.2"
+
     defaultConfig {
-        applicationId "com.gabcode.search_meli"
         minSdkVersion Sdk.min
         targetSdkVersion Sdk.target
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
+
 }
 
 dependencies {
@@ -36,15 +27,11 @@ dependencies {
     implementation Deps.kotlin_standard
     implementation Deps.appcompat
     implementation Deps.core
-    implementation Deps.constraintlayout
-    implementation Deps.material
 
-    implementation Deps.lifecycle_runtime
-    implementation Deps.lifecycle_common
-    implementation Deps.lifecycle_viewmodel_extension
-
-    implementation Deps.coroutines_core
-    implementation Deps.coroutines_android
+    implementation Deps.retrofit
+    implementation Deps.retrofit_converter
+    implementation Deps.okhttp3
+    implementation Deps.okhttp3_interceptor
 
     testImplementation Deps.junit
     androidTestImplementation Deps.test_extension
