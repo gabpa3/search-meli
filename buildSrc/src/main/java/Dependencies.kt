@@ -17,7 +17,7 @@ object Versions {
     val kotlin = "1.3.50"
     val coroutines = "1.3.2"
 
-    val retrofit = "2.5.0"
+    val retrofit = "2.7.1"
     val okhttp3 = "3.12.0"
 
     val material = "1.2.0-alpha03"

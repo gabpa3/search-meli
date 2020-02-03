@@ -33,6 +33,8 @@ dependencies {
     implementation Deps.okhttp3
     implementation Deps.okhttp3_interceptor
 
+    implementation Deps.coroutines_core
+
     testImplementation Deps.junit
     androidTestImplementation Deps.test_extension
     androidTestImplementation Deps.test_espresso
