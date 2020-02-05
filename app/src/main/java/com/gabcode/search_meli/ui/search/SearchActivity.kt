@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gabcode.core.domain.model.Item
 import com.gabcode.search_meli.R
-import com.gabcode.search_meli.di.viewmodel.ViewModelProviderFactory
 import com.gabcode.search_meli.ui.extension.injector
 import javax.inject.Inject
 
@@ -16,7 +15,7 @@ class SearchActivity : AppCompatActivity() {
     private val TAG: String = SearchActivity::class.java.simpleName
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProviderFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

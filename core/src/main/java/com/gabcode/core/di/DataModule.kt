@@ -5,25 +5,28 @@ import com.gabcode.core.data.remote.ApiService
 import com.gabcode.core.data.remote.RestClient
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 
 @Module
-class DataModule {
+object DataModule {
 
     @Provides
-    @Singleton
+    fun provideCoroutineDispatcher(): CoroutineDispatcher = Dispatchers.IO
+
+    @JvmStatic
+    @Provides
     fun provideHttpClient(): OkHttpClient = RestClient.createHttpClient()
 
+    @JvmStatic
     @Provides
-    @Singleton
-    fun provideRetrofit(baseUrl: String = BuildConfig.API_HOST, client: OkHttpClient): Retrofit =
-        RestClient.createRetrofit(baseUrl, client)
+    fun provideRetrofit(client: OkHttpClient): Retrofit =
+        RestClient.createRetrofit(BuildConfig.API_HOST, client)
 
+    @JvmStatic
     @Provides
-    @Singleton
-    fun provideApiService(
-        retrofit: Retrofit, service: Class<ApiService> = ApiService::class.java): ApiService =
-            RestClient.createService(retrofit, service)
+    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+
 }

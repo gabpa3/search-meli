@@ -11,17 +11,11 @@ import javax.inject.Inject
 
 class ItemRepositoryImpl @Inject constructor(
     private val networkHandler: NetworkHandler,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val dispatcher: CoroutineDispatcher,
     private val service: ApiService
 ) : ItemRepository {
 
     private val networkHelper = NetworkHelper()
-
-    init {
-        val client = RestClient.createHttpClient()
-        val retrofit = RestClient.createRetrofit("https://api.mercadolibre.com/", client)
-//        service = RestClient.createService(retrofit, ApiService::class.java)
-    }
 
     override suspend fun searchQuery(query: String): Result<SearchResult<Item>> {
         return  networkHelper.safeRequest(

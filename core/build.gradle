@@ -33,9 +33,9 @@ dependencies {
     implementation Deps.appcompat
     implementation Deps.core
 
-    implementation Deps.retrofit
+    api Deps.retrofit // Open to be visible by AppComponent
     implementation Deps.retrofit_converter
-    implementation Deps.okhttp3
+    api Deps.okhttp3 // Open to be visible by AppComponent
     implementation Deps.okhttp3_interceptor
 
     implementation Deps.coroutines_core

@@ -20,10 +20,10 @@ abstract class ViewModelModule {
     @ViewModelKey(SearchViewModel::class)
     abstract fun bindSearchViewModel(viewModel: SearchViewModel): ViewModel
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(ItemDetailViewModel::class)
-    abstract fun bindItemDetailViewModel(viewModel: ItemDetailViewModel): ViewModel
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(ItemDetailViewModel::class)
+//    abstract fun bindItemDetailViewModel(viewModel: ItemDetailViewModel): ViewModel
 
 
 }

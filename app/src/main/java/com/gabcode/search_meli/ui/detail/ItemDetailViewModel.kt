@@ -1,7 +1,7 @@
 package com.gabcode.search_meli.ui.detail
 
-import androidx.lifecycle.ViewModel
+import com.gabcode.search_meli.ui.base.BaseViewModel
 
-class ItemDetailViewModel : ViewModel() {
+class ItemDetailViewModel : BaseViewModel() {
 
 }
