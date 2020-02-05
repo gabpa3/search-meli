@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation project(':core')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation Deps.kotlin_standard
     implementation Deps.appcompat
@@ -45,6 +46,9 @@ dependencies {
 
     implementation Deps.coroutines_core
     implementation Deps.coroutines_android
+
+    implementation Deps.dagger
+    kapt Deps.dagger_compiler
 
     testImplementation Deps.junit
     androidTestImplementation Deps.test_extension

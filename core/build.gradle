@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Sdk.compile
@@ -17,6 +18,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "API_HOST", '"https://api.mercadolibre.com/"')
+        }
+        debug {
+            buildConfigField("String", "API_HOST", '"https://api.mercadolibre.com/"')
         }
     }
 
@@ -34,6 +39,9 @@ dependencies {
     implementation Deps.okhttp3_interceptor
 
     implementation Deps.coroutines_core
+
+    implementation Deps.dagger
+    kapt Deps.dagger_compiler
 
     testImplementation Deps.junit
     androidTestImplementation Deps.test_extension

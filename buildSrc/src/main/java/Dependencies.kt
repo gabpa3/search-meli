@@ -1,6 +1,6 @@
 object Sdk {
     val min = 22
-    val target = 29
+    val target = 28
     val compile = target
 }
 
@@ -21,7 +21,7 @@ object Versions {
     val okhttp3 = "3.12.0"
 
     val material = "1.2.0-alpha03"
-    val dagger = "2.25.2"
+    val dagger = "2.26"
 
     val coil = "0.9.1"
 

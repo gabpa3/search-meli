@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 
 object RestClient {
 
-    fun createClient(): OkHttpClient {
+    internal fun createHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
@@ -23,7 +23,7 @@ object RestClient {
             .build()
     }
 
-    fun createRetrofit(baseUrl: String, client: OkHttpClient): Retrofit {
+    internal fun createRetrofit(baseUrl: String, client: OkHttpClient): Retrofit {
         val gson = GsonBuilder().create()
         return Retrofit.Builder()
             .baseUrl(baseUrl)
@@ -32,7 +32,7 @@ object RestClient {
             .build()
     }
 
-    fun <T> createService(retrofit: Retrofit, service: Class<T>): T {
+    internal fun <T> createService(retrofit: Retrofit, service: Class<T>): T {
         return retrofit.create(service)
     }
 

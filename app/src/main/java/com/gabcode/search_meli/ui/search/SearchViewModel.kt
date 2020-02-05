@@ -8,9 +8,10 @@ import kotlinx.coroutines.launch
 import com.gabcode.core.data.remote.Result
 import com.gabcode.core.domain.model.Item
 import com.gabcode.core.domain.model.Paging
+import javax.inject.Inject
 
-class SearchViewModel(
-    private val searchDataUseCase: SearchDataUseCase
+class SearchViewModel
+    @Inject constructor(private val searchDataUseCase: SearchDataUseCase
 ) : BaseViewModel(){
 
     val paging = MutableLiveData<Paging>()
