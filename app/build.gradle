@@ -38,6 +38,9 @@ dependencies {
     implementation Deps.appcompat
     implementation Deps.core
     implementation Deps.constraintlayout
+    implementation Deps.recyclerview
+    implementation Deps.viewpager
+
     implementation Deps.material
 
     implementation Deps.lifecycle_runtime
@@ -46,6 +49,8 @@ dependencies {
 
     implementation Deps.coroutines_core
     implementation Deps.coroutines_android
+
+    implementation Deps.coil
 
     implementation Deps.dagger
     kapt Deps.dagger_compiler

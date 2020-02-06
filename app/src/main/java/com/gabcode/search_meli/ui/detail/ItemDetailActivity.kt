@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.gabcode.search_meli.R
 import com.gabcode.search_meli.ui.extension.injector
+import kotlinx.android.synthetic.main.activity_item_detail.*
 import javax.inject.Inject
 
 class ItemDetailActivity : AppCompatActivity() {
@@ -18,5 +19,9 @@ class ItemDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_item_detail)
 
         injector.inject(this)
+    }
+
+    private fun showData() {
+        viewPager.adapter = PictureAdapter()
     }
 }

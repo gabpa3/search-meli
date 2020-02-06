@@ -38,6 +38,7 @@ object Deps {
     val annotation = "androidx.annotation:annotation:${Versions.annotation}"
     val cardview = "androidx.cardview:cardview:${Versions.cardview}"
     val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
+    val viewpager = "androidx.viewpager2:viewpager2:${Versions.viewpager}"
 
     val lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     val lifecycle_common = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
