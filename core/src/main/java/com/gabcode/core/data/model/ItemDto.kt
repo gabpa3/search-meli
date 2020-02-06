@@ -7,7 +7,7 @@ data class ItemDto(
     @SerializedName("title") val title: String,
     @SerializedName("price") val price: Int,
     @SerializedName("thumbnail") val thumbnail: String,
-    @SerializedName("pictureDtos") val pictures: List<PictureDto>
+    @SerializedName("pictures") val pictures: List<PictureDto>
 )
 
 data class PictureDto(

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchResultDto<T>(
     @SerializedName("query") val query: String?,
-    @SerializedName("pagingDto") val pagingDto: PagingDto?,
+    @SerializedName("paging") val pagingDto: PagingDto?,
     @SerializedName("results") val results: List<T>
 )
 

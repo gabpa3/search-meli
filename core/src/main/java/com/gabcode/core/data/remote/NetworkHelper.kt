@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
 
-class NetworkHelper {
+object NetworkHelper {
 
     suspend fun <T,R> safeRequest(
         dispatcher: CoroutineDispatcher, call: suspend () -> Response<T>,  transform: (T) -> R): Result<R> {
