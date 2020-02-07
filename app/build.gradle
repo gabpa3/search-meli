@@ -40,6 +40,7 @@ dependencies {
     implementation Deps.constraintlayout
     implementation Deps.recyclerview
     implementation Deps.viewpager
+    implementation Deps.cardview
 
     implementation Deps.material
 
