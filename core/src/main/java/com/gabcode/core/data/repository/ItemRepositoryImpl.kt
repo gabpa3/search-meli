@@ -20,4 +20,10 @@ class ItemRepositoryImpl @Inject constructor(
             dispatcher, { service.search(query) }, { it.toDomainModel() })
     }
 
+    override suspend fun getItem(id: String): Result<Item> {
+        return NetworkHelper.safeRequest(
+            dispatcher, { service.getItem(id) }, { it.toDomainModel() }
+        )
+    }
+
 }

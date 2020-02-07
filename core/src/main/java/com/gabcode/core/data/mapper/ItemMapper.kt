@@ -16,6 +16,15 @@ fun mapFromDataModel(itemDto: ItemDto): Item {
     )
 }
 
+fun ItemDto.toDomainModel(): Item {
+    return Item(
+        this.id,
+        this.title,
+        this.price,
+        this.thumbnail,
+        mapPictureListToDomain(this.pictures))
+}
+
 private fun mapPictureListToDomain(pictureDto: List<PictureDto>): List<Picture> {
     return when (pictureDto.isNullOrEmpty()) {
         true -> emptyList()
@@ -26,5 +35,5 @@ private fun mapPictureListToDomain(pictureDto: List<PictureDto>): List<Picture> 
 }
 
 fun List<ItemDto>.toDomainModel(): List<Item> {
-    return this.map { mapFromDataModel(it) }
+    return this.map { it.toDomainModel() }
 }
