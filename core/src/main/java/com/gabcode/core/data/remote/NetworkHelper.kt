@@ -14,12 +14,10 @@ object NetworkHelper {
         return withContext(dispatcher) {
             try {
                 val response = call.invoke()
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        Result.Success(transform(it))
-                    }
+                when (response.isSuccessful) {
+                    true -> Result.Success(transform(response.body()!!))
+                    false -> Result.Error(response.message())
                 }
-                Result.Error(response.message())
             } catch (throwable: Throwable) {
                 when (throwable) {
                     is HttpException -> convertErrorBody(throwable)

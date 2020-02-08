@@ -6,7 +6,6 @@ import com.gabcode.core.domain.model.Item
 import com.gabcode.core.domain.model.SearchResult
 import com.gabcode.core.domain.repository.ItemRepository
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class ItemRepositoryImpl @Inject constructor(
@@ -16,14 +15,19 @@ class ItemRepositoryImpl @Inject constructor(
 ) : ItemRepository {
 
     override suspend fun searchQuery(query: String): Result<SearchResult<Item>> {
-        return  NetworkHelper.safeRequest(
-            dispatcher, { service.search(query) }, { it.toDomainModel() })
+        return when (networkHandler.isConnected) {
+            true -> NetworkHelper.safeRequest(
+                dispatcher, { service.search(query) }, { it.toDomainModel() })
+            false, null -> Result.Error("")
+        }
     }
 
     override suspend fun getItem(id: String): Result<Item> {
-        return NetworkHelper.safeRequest(
-            dispatcher, { service.getItem(id) }, { it.toDomainModel() }
-        )
+        return when (networkHandler.isConnected) {
+            true -> NetworkHelper.safeRequest(
+                dispatcher, { service.getItem(id) }, { it.toDomainModel() })
+            false, null -> Result.Error("")
+        }
     }
 
 }
