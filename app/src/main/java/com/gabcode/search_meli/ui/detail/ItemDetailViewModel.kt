@@ -27,7 +27,6 @@ class ItemDetailViewModel @Inject constructor(
                         mFailureMessage.value = result.message
                     }
                 }
-
             }
             mLoadingData.value = false
         }

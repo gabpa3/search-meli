@@ -1,5 +1,6 @@
 package com.gabcode.search_meli.ui.search
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.gabcode.core.domain.usecase.SearchDataUseCase
@@ -15,27 +16,27 @@ class SearchViewModel
 ) : BaseViewModel(){
 
     val paging = MutableLiveData<Paging>()
-    val searchData = MutableLiveData<List<Item>>()
+
+    private val mSearchData = MutableLiveData<List<Item>>()
+    val searchData: LiveData<List<Item>> = mSearchData
 
     fun fetchItems(query: String) {
         mLoadingData.value = true
         viewModelScope.launch {
-            val result = searchDataUseCase.invoke(query)
-            when (result) {
-                is Result.Success -> {
-                    result.data.let {
-                        paging.value = it.paging
-                        searchData.value = it.results
+            searchDataUseCase.invoke(query).let { result ->
+                when (result) {
+                    is Result.Success -> {
+                        result.data.let {
+                            paging.value = it.paging
+                            mSearchData.value = it.results
+                        }
                     }
-                }
-                is Result.Error -> {
-                    mFailureMessage.value = result.message
+                    is Result.Error -> {
+                        mFailureMessage.value = result.message
+                    }
                 }
             }
             mLoadingData.value = false
         }
     }
-
-
-
 }

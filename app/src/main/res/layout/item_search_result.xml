@@ -5,26 +5,42 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/card_side_margin"
     android:layout_marginEnd="@dimen/card_side_margin"
+    android:layout_marginBottom="@dimen/card_bottom_margin"
     app:cardElevation="@dimen/card_elevation"
+    app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardPreventCornerOverlap="false">
 
-    <ImageView
-        android:id="@+id/itemPictureImg"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_search_result_image_height"
-        android:gravity="center_horizontal"
-        android:contentDescription="@null"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/padding_small">
 
-    <TextView
-        android:id="@+id/itemTitleTx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="3"
-        android:ellipsize="end" />
+        <ImageView
+            android:id="@+id/itemPictureImg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_search_result_image_height"
+            android:gravity="center_horizontal"
+            android:contentDescription="@null"/>
 
-    <TextView
-        android:id="@+id/itemPriceTx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/itemTitleTx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:maxLines="3"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/itemPriceTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"/>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
