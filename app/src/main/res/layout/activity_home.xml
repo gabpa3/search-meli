@@ -56,12 +56,16 @@
         android:visibility="gone"
         layout="@layout/layout_progressbar" />
 
+    <include
+        android:id="@+id/progressPagingLayout"
+        android:visibility="gone"
+        layout="@layout/layout_progress_paging" />
+
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:constraint_referenced_ids="resultFrame,searchResultRecyclerView" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

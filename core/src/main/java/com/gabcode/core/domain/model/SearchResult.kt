@@ -1,12 +1,15 @@
 package com.gabcode.core.domain.model
 
+import com.gabcode.core.extension.empty
+
 data class SearchResult<T>(
     val paging: Paging,
+    val query: String,
     val results: List<T>
 ) {
     companion object {
         fun <T> empty(): SearchResult<T> {
-            return SearchResult(Paging.empty(), listOf())
+            return SearchResult(Paging.empty(), String.empty(),listOf())
         }
     }
 }

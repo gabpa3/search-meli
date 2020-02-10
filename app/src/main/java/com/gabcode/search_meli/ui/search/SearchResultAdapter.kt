@@ -11,7 +11,7 @@ import com.gabcode.search_meli.ui.util.ItemListener
 import kotlinx.android.synthetic.main.item_search_result.view.*
 
 class SearchResultAdapter(
-    private val items: List<Item> = listOf(),
+    private val items: MutableList<Item> = mutableListOf(),
     private val listener: ItemListener<Item>
 ) : RecyclerView.Adapter<SearchResultAdapter.ViewHolder>() {
 
@@ -29,6 +29,7 @@ class SearchResultAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         fun bind(item: Item, listener: ItemListener<Item>) {
             itemView.apply {
                 itemPictureImg.load(item.thumbnail)
