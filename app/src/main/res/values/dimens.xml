@@ -11,11 +11,18 @@
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_extra_small">4dp</dimen>
 
+    <dimen name="textSize_micro">10sp</dimen>
+    <dimen name="textSize_small">12sp</dimen>
+    <dimen name="textSize_normal">14sp</dimen>
+    <dimen name="textSize_medium">18sp</dimen>
+    <dimen name="textSize_large">22sp</dimen>
+
     <dimen name="card_side_margin">12dp</dimen>
     <dimen name="card_bottom_margin">8dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="card_corner_radius">12dp</dimen>
 
     <dimen name="item_search_result_image_height">250dp</dimen>
+    <dimen name="image_landing_size">200dp</dimen>
 
 </resources>

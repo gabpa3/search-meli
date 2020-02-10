@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingBottom="@dimen/margin_small"
+    android:layout_marginBottom="@dimen/margin_extra_small"
+    android:background="@color/white"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/icAccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:src="@drawable/ic_access"
+        android:tint="?attr/colorAccent"
+        android:alpha=".5"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/titleRecentTx"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleRecentTx" />
+
+    <TextView
+        android:id="@+id/titleRecentTx"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:alpha=".7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/icAccess"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/lorem/random"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:src="@drawable/ic_done"
+        android:tint="?attr/colorAccent"
+        android:rotation="270"
+        android:contentDescription="@null"
+        android:alpha=".5"
+        app:layout_constraintBottom_toBottomOf="@+id/titleRecentTx"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleRecentTx" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

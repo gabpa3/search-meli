@@ -13,7 +13,8 @@ interface ApiService {
     suspend fun search(
         @Query("q", encoded = true) query: String,
         @Query("offset") offset: Int = 0,
-        @Query("limit") limit: Int = 16
+        @Query("limit") limit: Int = 4
+//        @Query("limit") limit: Int = 16
     ): Response<SearchResultDto<ItemDto>>
 
     @GET("items/{itemId}")

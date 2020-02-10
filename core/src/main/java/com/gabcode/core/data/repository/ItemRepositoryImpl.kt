@@ -3,6 +3,7 @@ package com.gabcode.core.data.repository
 import com.gabcode.core.data.mapper.toDomainModel
 import com.gabcode.core.data.remote.*
 import com.gabcode.core.domain.model.Item
+import com.gabcode.core.domain.model.RecentSearch
 import com.gabcode.core.domain.model.SearchResult
 import com.gabcode.core.domain.repository.ItemRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -28,6 +29,16 @@ class ItemRepositoryImpl @Inject constructor(
                 dispatcher, { service.getItem(id) }, { it.toDomainModel() })
             false, null -> Result.Error("")
         }
+    }
+
+    override suspend fun getRecentItemSearched(): Result<RecentSearch> {
+        val result: List<Item> = listOf(
+            Item(id = "1", title = "Motorola"),
+            Item(id = "2", title = "Zapatos nike"),
+            Item(id = "3", title = "adidas advantage")
+        )
+
+        return Result.Success(RecentSearch(result))
     }
 
 }

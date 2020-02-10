@@ -9,34 +9,36 @@ import kotlinx.coroutines.launch
 import com.gabcode.core.data.remote.Result
 import com.gabcode.core.domain.model.Item
 import com.gabcode.core.domain.model.Paging
+import com.gabcode.core.domain.usecase.GetRecentSearchDataUseCase
 import javax.inject.Inject
 
 class SearchViewModel
-    @Inject constructor(private val searchDataUseCase: SearchDataUseCase
+    @Inject constructor(private val getRecentSearchDataUseCase: GetRecentSearchDataUseCase
 ) : BaseViewModel(){
 
-    val paging = MutableLiveData<Paging>()
+    private val mRecentSearchData = MutableLiveData<List<String>>()
+    val recentSearchData: LiveData<List<String>> = mRecentSearchData
 
-    private val mSearchData = MutableLiveData<List<Item>>()
-    val searchData: LiveData<List<Item>> = mSearchData
+    init {
+        fetchRecentSearches()
+    }
 
-    fun fetchItems(query: String) {
-        mLoadingData.value = true
-        viewModelScope.launch {
-            searchDataUseCase.invoke(query).let { result ->
-                when (result) {
-                    is Result.Success -> {
-                        result.data.let {
-                            paging.value = it.paging
-                            mSearchData.value = it.results
-                        }
-                    }
-                    is Result.Error -> {
-                        mFailureMessage.value = result.message
-                    }
-                }
-            }
-            mLoadingData.value = false
-        }
+    private fun fetchRecentSearches() {
+//        mLoadingData.value = true
+//        viewModelScope.launch {
+//            getRecentSearchDataUseCase.invoke().let { result ->
+//                when (result) {
+//                    is Result.Success -> {
+//                        result.data.let {
+//                            mRecentSearchData.value = it.results
+//                        }
+//                    }
+//                    is Result.Error -> {
+//                        mFailureMessage.value = result.message
+//                    }
+//                }
+//            }
+//            mLoadingData.value = false
+//        }
     }
 }

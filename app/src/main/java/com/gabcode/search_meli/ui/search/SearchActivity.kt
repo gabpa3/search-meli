@@ -1,22 +1,22 @@
 package com.gabcode.search_meli.ui.search
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.gabcode.core.domain.model.Item
 import com.gabcode.search_meli.R
 import com.gabcode.search_meli.ui.Constants
-import com.gabcode.search_meli.ui.ItemListener
-import com.gabcode.search_meli.ui.detail.ItemDetailActivity
+import com.gabcode.search_meli.ui.util.ItemListener
 import com.gabcode.search_meli.ui.extension.injector
+import com.gabcode.search_meli.ui.util.KeyboardUtil
 import kotlinx.android.synthetic.main.activity_search.*
 import javax.inject.Inject
 
-class SearchActivity : AppCompatActivity(), ItemListener<Item> {
+class SearchActivity : AppCompatActivity(), ItemListener<String> {
 
     private val TAG: String = SearchActivity::class.java.simpleName
 
@@ -24,7 +24,7 @@ class SearchActivity : AppCompatActivity(), ItemListener<Item> {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: SearchViewModel
 
-    private lateinit var searchRecentAdapter: SearchResultAdapter
+    private lateinit var searchRecentAdapter: SearchRecentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,36 +33,62 @@ class SearchActivity : AppCompatActivity(), ItemListener<Item> {
         injector.inject(this)
 
         viewModel = ViewModelProvider(this, viewModelFactory)[SearchViewModel::class.java]
-        viewModel.searchData.observe(this, Observer { showData(it) })
+        viewModel.recentSearchData.observe(this, Observer { showData(it) })
 
-        startSearch()
+        searchback.setOnClickListener { dismiss() }
 
-//        setupRecycler()
+        setupSearchView()
     }
 
-    private fun setupRecycler() {
-        val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
-        searchResultRecyclerView.apply {
-            this.layoutManager = layoutManager
-//            addOnScrollListener(EndlessPagingScrollListener(layoutManager))
+    override fun onBackPressed() {
+       dismiss()
+    }
+
+    private fun dismiss() {
+        if (searchView.isFocused) {
+            KeyboardUtil.hide(searchView)
+            searchView.clearFocus()
+        }
+        finishAfterTransition()
+    }
+
+    override fun onEnterAnimationComplete() {
+        super.onEnterAnimationComplete()
+        searchView.requestFocus()
+        KeyboardUtil.show(searchView)
+    }
+
+    private fun setupSearchView() {
+        searchView.apply {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    startSearch(query)
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return true
+                }
+            })
         }
     }
 
-    private fun showData(items: List<Item>) {
-        searchRecentAdapter = SearchResultAdapter(items, this)
-        searchResultRecyclerView.adapter = searchRecentAdapter
+    private fun startSearch(query: String?) {
+        if (TextUtils.isEmpty(query)) return
+
+        val intent = Intent()
+        intent.putExtra(Constants.QUERY_KEY, query)
+        setResult(Activity.RESULT_OK, intent)
+        dismiss()
     }
 
-    private fun startSearch() {
-        viewModel.fetchItems("zapatos nike")
+    private fun showData(recentSearches: List<String>) {
+        searchRecentAdapter = SearchRecentAdapter(recentSearches, this)
+        recentSearchRecyclerView.adapter = searchRecentAdapter
     }
 
-    override fun onItemClick(data: Item) {
-        val intent = Intent(this@SearchActivity, ItemDetailActivity::class.java)
-        intent.putExtra(Constants.ITEM_ID_KEY, data.id)
-        startActivity(intent)
+    override fun onItemClick(data: String) {
+        searchView.setQuery(data, false)
     }
-
 
 }

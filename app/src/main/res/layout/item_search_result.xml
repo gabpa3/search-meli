@@ -31,7 +31,8 @@
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_small"
             android:maxLines="3"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            android:transitionName="@string/transition_item_title"/>
 
         <TextView
             android:id="@+id/itemPriceTx"

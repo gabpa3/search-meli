@@ -32,6 +32,7 @@ dependencies {
     implementation Deps.kotlin_standard
     implementation Deps.appcompat
     implementation Deps.core
+    implementation Deps.room
 
     api Deps.retrofit // Open to be visible by AppComponent
     implementation Deps.retrofit_converter

@@ -7,7 +7,7 @@ import coil.api.load
 import com.gabcode.core.domain.model.Item
 import com.gabcode.core.extension.inflate
 import com.gabcode.search_meli.R
-import com.gabcode.search_meli.ui.ItemListener
+import com.gabcode.search_meli.ui.util.ItemListener
 import kotlinx.android.synthetic.main.item_search_result.view.*
 
 class SearchResultAdapter(

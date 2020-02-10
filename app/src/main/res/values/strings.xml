@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">search-meli</string>
+    <string name="home_landing_title">Buscá lo que gustes</string>
+    <string name="search_query_hint">Buscar producto</string>
+    <string name="search">Buscar</string>
+    <string name="progress_text">Cargando&#8230;</string>
+
+
+    <!-- Transition name-->
+    <string name="transition_search_back">transition_search_back</string>
+    <string name="transition_item_title">transition_item_title</string>
+
 </resources>

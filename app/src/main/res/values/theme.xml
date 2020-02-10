@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Base application theme. -->
-<!--    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar"/>-->
-    <style name="BaseTheme" parent="Theme.MaterialComponents.Light"/>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.NoActionBar"/>
 
     <style name="AppTheme" parent="BaseTheme">
         <item name="colorPrimary">@color/yellow_500</item>
@@ -10,5 +9,12 @@
         <item name="colorAccent">@color/amber_500</item>
         <item name="colorSecondary">@color/light_green_700</item>
         <item name="colorSecondaryVariant">@color/light_green_800</item>
+        <item name="android:textColor">@color/gray_900</item>
+        <item name="android:windowBackground">@color/gray_300</item>
+        <item name="android:statusBarColor" tools:targetApi="23">?attr/colorPrimary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
     </style>
+
 </resources>

@@ -12,6 +12,7 @@ object Versions {
     val cardview = "1.0.0"
     val recyclerview = "1.1.0"
     val viewpager = "1.0.0"
+    val room = "2.2.3"
     val lifecycle = "2.2.0"
 
     val kotlin = "1.3.50"
@@ -23,7 +24,7 @@ object Versions {
     val material = "1.2.0-alpha03"
     val dagger = "2.26"
 
-    val coil = "0.9.1"
+    val coil = "0.9.5"
 
     val junit = "4.12"
     val test_extension = "1.1.0"
@@ -39,6 +40,7 @@ object Deps {
     val cardview = "androidx.cardview:cardview:${Versions.cardview}"
     val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
     val viewpager = "androidx.viewpager2:viewpager2:${Versions.viewpager}"
+    val room = "androidx.room:room-runtime:${Versions.room}"
 
     val lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     val lifecycle_common = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
