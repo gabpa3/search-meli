@@ -37,6 +37,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/guideline" />
 
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/indicator_size"
+        android:layout_alignBottom="@+id/viewPager"
+        app:ci_drawable="@drawable/shape_indicator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline" />
+
     <TextView
         android:id="@+id/itemTitleTx"
         android:layout_width="0dp"

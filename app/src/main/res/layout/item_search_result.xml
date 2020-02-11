@@ -19,8 +19,10 @@
         <ImageView
             android:id="@+id/itemPictureImg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/item_search_result_image_height"
-            android:gravity="center_horizontal"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:contentDescription="@null"/>
 
         <TextView

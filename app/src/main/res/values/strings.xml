@@ -5,6 +5,8 @@
     <string name="search">Buscar</string>
     <string name="progress_text">Cargando&#8230;</string>
 
+    <string name="home_total_result">%1$s resultados</string>
+
 
     <!-- Transition name-->
     <string name="transition_search_back">transition_search_back</string>

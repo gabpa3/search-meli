@@ -52,6 +52,7 @@ dependencies {
     implementation Deps.coroutines_android
 
     implementation Deps.coil
+    implementation Deps.circleindicator
 
     implementation Deps.dagger
     kapt Deps.dagger_compiler

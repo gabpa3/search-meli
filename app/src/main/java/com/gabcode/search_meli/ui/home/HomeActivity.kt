@@ -91,7 +91,7 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
         group.visibility = View.VISIBLE
         searchResultAdapter = SearchResultAdapter(result.items, this)
         val total = result.total.toString()
-        totalTx.text = "$total resultados"
+        totalTx.text = String.format(resources.getString(R.string.home_total_result), total)
         searchResultRecyclerView.adapter = searchResultAdapter
     }
 

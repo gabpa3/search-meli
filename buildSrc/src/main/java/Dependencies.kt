@@ -25,6 +25,7 @@ object Versions {
     val dagger = "2.26"
 
     val coil = "0.9.5"
+    val circleindicator = "2.1.4"
 
     val junit = "4.12"
     val test_extension = "1.1.0"
@@ -60,6 +61,7 @@ object Deps {
     val dagger_compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
 
     val coil = "io.coil-kt:coil:${Versions.coil}"
+    val circleindicator = "me.relex:circleindicator:${Versions.circleindicator}"
 
     val junit = "junit:junit:${Versions.junit}"
     val test_extension = "androidx.test.ext:junit:${Versions.test_extension}"

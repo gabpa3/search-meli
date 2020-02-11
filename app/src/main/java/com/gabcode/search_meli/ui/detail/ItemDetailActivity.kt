@@ -34,6 +34,7 @@ class ItemDetailActivity : AppCompatActivity() {
 
     private fun showData(item: Item) {
         viewPager.adapter = PictureAdapter(item.pictures)
+        indicator.setViewPager(viewPager)
         itemTitleTx.text =  item.title
         itemPriceTx.text = item.price.toString()
     }

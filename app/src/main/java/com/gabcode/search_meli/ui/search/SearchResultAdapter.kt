@@ -3,10 +3,10 @@ package com.gabcode.search_meli.ui.search
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
 import com.gabcode.core.domain.model.Item
 import com.gabcode.core.extension.inflate
 import com.gabcode.search_meli.R
+import com.gabcode.search_meli.ui.util.ImageUtil
 import com.gabcode.search_meli.ui.util.ItemListener
 import kotlinx.android.synthetic.main.item_search_result.view.*
 
@@ -30,8 +30,8 @@ class SearchResultAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Item, listener: ItemListener<Item>) {
-            itemView.apply {
-                itemPictureImg.load(item.thumbnail)
+            itemView.run {
+                ImageUtil.loadFull(itemPictureImg, item.thumbnail)
                 itemTitleTx.text = item.title
                 itemPriceTx.text = item.price.toString()
                 setOnClickListener{listener.onItemClick(item)}

@@ -24,5 +24,7 @@
 
     <dimen name="item_search_result_image_height">250dp</dimen>
     <dimen name="image_landing_size">200dp</dimen>
+    
+    <dimen name="indicator_size">48dp</dimen>
 
 </resources>
