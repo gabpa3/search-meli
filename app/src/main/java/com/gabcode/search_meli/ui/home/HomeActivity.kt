@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gabcode.core.domain.model.Item
 import com.gabcode.search_meli.R
 import com.gabcode.search_meli.ui.Constants
+import com.gabcode.search_meli.ui.data.model.SearchResultUi
 import com.gabcode.search_meli.ui.detail.ItemDetailActivity
 import com.gabcode.search_meli.ui.extension.injector
 import com.gabcode.search_meli.ui.search.SearchActivity
@@ -40,8 +41,8 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
         setSupportActionBar(toolbar)
 
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
-        viewModel.searchData.observe(this, Observer { showData(it) })
-        viewModel.loadingData.observe(this, Observer { loadingData(it) })
+
+        setupObservers()
 
         setupRecycler()
     }
@@ -75,19 +76,27 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
         }
     }
 
+    private fun setupObservers() {
+        viewModel.searchData.observe(this, Observer { showData(it) })
+        viewModel.loadingData.observe(this, Observer { loadingData(it) })
+
+        viewModel.newDataPage.observe(this, Observer { addNextPage(it) })
+        viewModel.loadingPagingData.observe(this, Observer { loadingPagingData(it) })
+    }
+
     private fun setupRecycler() {
         searchResultRecyclerView.apply {
             setHasFixedSize(true)
             addItemDecoration(SpaceItemDecorator())
-//            addOnScrollListener(object: EndlessPagingScrollListener(layoutManager as StaggeredGridLayoutManager){
-//                override fun loadMoreItems() {
-//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//                }
-//
-//                override fun isLoading(): Boolean {
-//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//                }
-//            })
+            addOnScrollListener(object: EndlessPagingScrollListener(layoutManager as StaggeredGridLayoutManager){
+                override fun loadMore() {
+                    viewModel.fetchMoreItems()
+                }
+
+                override fun isLoading(): Boolean {
+                    return progressPagingLayout.visibility == View.VISIBLE
+                }
+            })
         }
     }
 
@@ -97,6 +106,10 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
         val total = result.total.toString()
         totalTx.text = String.format(resources.getString(R.string.home_total_result), total)
         searchResultRecyclerView.adapter = searchResultAdapter
+    }
+
+    private fun addNextPage(newItems: List<Item>) {
+        searchResultAdapter.addItems(newItems)
     }
 
     private fun navigateToSearchActivity() {
@@ -118,6 +131,10 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
     private fun loadingData(value: Boolean) {
         landingLayout.visibility = View.GONE
         progressLayout.visibility = if (value) View.VISIBLE else View.GONE
+    }
+
+    private fun loadingPagingData(value: Boolean) {
+        progressPagingLayout.visibility = if (value) View.VISIBLE else View.GONE
     }
 
 }

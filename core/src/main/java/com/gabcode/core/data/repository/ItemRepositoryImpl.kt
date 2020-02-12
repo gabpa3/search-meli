@@ -15,10 +15,10 @@ class ItemRepositoryImpl @Inject constructor(
     private val service: ApiService
 ) : ItemRepository {
 
-    override suspend fun searchQuery(query: String): Result<SearchResult<Item>> {
+    override suspend fun searchQuery(query: String, offset: Int): Result<SearchResult<Item>> {
         return when (networkHandler.isConnected) {
             true -> NetworkHelper.safeRequest(
-                dispatcher, { service.search(query) }, { it.toDomainModel() })
+                dispatcher, { service.search(query, offset) }, { it.toDomainModel() })
             false, null -> Result.Error("")
         }
     }

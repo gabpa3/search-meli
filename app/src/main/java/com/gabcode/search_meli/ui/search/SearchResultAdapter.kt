@@ -11,7 +11,7 @@ import com.gabcode.search_meli.ui.util.ItemListener
 import kotlinx.android.synthetic.main.item_search_result.view.*
 
 class SearchResultAdapter(
-    private val items: List<Item> = listOf(),
+    private val items: MutableList<Item> = mutableListOf(),
     private val listener: ItemListener<Item>
 ) : RecyclerView.Adapter<SearchResultAdapter.ViewHolder>() {
 
@@ -28,7 +28,14 @@ class SearchResultAdapter(
         holder.bind(items[position], listener)
     }
 
+    fun addItems(newItems: List<Item>) {
+        val currentSize = items.size
+        items.addAll(newItems)
+        notifyItemRangeInserted(currentSize, newItems.size)
+    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         fun bind(item: Item, listener: ItemListener<Item>) {
             itemView.run {
                 ImageUtil.loadFull(itemPictureImg, item.thumbnail)

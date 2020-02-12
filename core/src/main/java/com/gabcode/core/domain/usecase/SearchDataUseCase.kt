@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class SearchDataUseCase @Inject constructor(private val repository: ItemRepository) {
 
-    suspend operator fun invoke(query: String): Result<SearchResult<Item>> {
-        return repository.searchQuery(query)
+    suspend operator fun invoke(query: String, offset: Int = 0): Result<SearchResult<Item>> {
+        return repository.searchQuery(query, offset)
     }
 
 }
