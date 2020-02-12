@@ -23,6 +23,8 @@ class ItemDetailActivity : AppCompatActivity() {
 
         injector.inject(this)
 
+        setSupportActionBar(toolbar)
+
         viewModel =  ViewModelProvider(this, viewModelFactory)[ItemDetailViewModel::class.java]
         viewModel.itemResult.observe(this, Observer { showData(it) })
 

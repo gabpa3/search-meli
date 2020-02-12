@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".3" />
+        app:layout_constraintGuide_percent=".45" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
@@ -27,15 +27,26 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="@dimen/guideline_side_margin" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolbarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:title="@string/detail_toolbar_title"
+        app:navigationIcon="@drawable/ic_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/guideline" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <me.relex.circleindicator.CircleIndicator3
         android:id="@+id/indicator"
@@ -53,10 +64,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:transitionName="@string/transition_item_title"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/viewPager"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        tools:text="Bota Hombre Cuero Borcego Bolita Briganti Zapato - Hcbo00902"/>
+        tools:text="Bota Hombre Cuero Borcego Bolita Briganti Zapato - Hcbo00902" />
 
     <TextView
         android:id="@+id/itemPriceTx"
