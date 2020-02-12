@@ -19,6 +19,7 @@ import com.gabcode.search_meli.ui.extension.injector
 import com.gabcode.search_meli.ui.search.SearchActivity
 import com.gabcode.search_meli.ui.search.SearchResultAdapter
 import com.gabcode.search_meli.ui.util.ItemListener
+import com.gabcode.search_meli.ui.util.SpaceItemDecorator
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
@@ -41,6 +42,8 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
         viewModel.searchData.observe(this, Observer { showData(it) })
         viewModel.loadingData.observe(this, Observer { loadingData(it) })
+
+        setupRecycler()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -75,15 +78,16 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
     private fun setupRecycler() {
         searchResultRecyclerView.apply {
             setHasFixedSize(true)
-            addOnScrollListener(object: EndlessPagingScrollListener(layoutManager as StaggeredGridLayoutManager){
-                override fun loadMoreItems() {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun isLoading(): Boolean {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-            })
+            addItemDecoration(SpaceItemDecorator())
+//            addOnScrollListener(object: EndlessPagingScrollListener(layoutManager as StaggeredGridLayoutManager){
+//                override fun loadMoreItems() {
+//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//                }
+//
+//                override fun isLoading(): Boolean {
+//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//                }
+//            })
         }
     }
 
