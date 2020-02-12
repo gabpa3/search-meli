@@ -78,6 +78,8 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
     private fun setupObservers() {
         viewModel.searchData.observe(this, Observer { showData(it) })
         viewModel.loadingData.observe(this, Observer { loadingData(it) })
+
+        viewModel.newDataPage.observe(this, Observer { addNextPage(it) })
         viewModel.loadingPagingData.observe(this, Observer { loadingPagingData(it) })
     }
 
@@ -102,6 +104,10 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
         val total = result.total.toString()
         totalTx.text = "$total resultados"
         searchResultRecyclerView.adapter = searchResultAdapter
+    }
+
+    private fun addNextPage(newItems: List<Item>) {
+        searchResultAdapter.addItems(newItems)
     }
 
     private fun navigateToSearchActivity() {

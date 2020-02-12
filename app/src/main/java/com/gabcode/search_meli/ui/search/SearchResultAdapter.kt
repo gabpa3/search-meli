@@ -28,6 +28,12 @@ class SearchResultAdapter(
         holder.bind(items[position], listener)
     }
 
+    fun addItems(newItems: List<Item>) {
+        val currentSize = items.size
+        items.addAll(newItems)
+        notifyItemRangeInserted(currentSize, newItems.size)
+    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Item, listener: ItemListener<Item>) {

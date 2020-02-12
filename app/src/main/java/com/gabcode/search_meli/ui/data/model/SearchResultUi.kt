@@ -4,7 +4,7 @@ import com.gabcode.core.domain.model.Item
 
 data class SearchResultUi(
     val total: Int,
-    val offset: Int,
+    var offset: Int,
     val query: String,
     val items: MutableList<Item>
 )

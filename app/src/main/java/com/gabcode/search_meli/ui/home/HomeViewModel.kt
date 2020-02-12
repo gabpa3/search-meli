@@ -19,10 +19,15 @@ class HomeViewModel @Inject constructor(
     private val paging = MutableLiveData<Paging>()
 
     private val mSearchData = MutableLiveData<SearchResultUi>()
-    val searchData: LiveData<SearchResultUi> = mSearchData
+    val searchData: LiveData<SearchResultUi> get() = mSearchData
 
     private val mLoadingPagingData = MutableLiveData<Boolean>()
-    val loadingPagingData: LiveData<Boolean> = mLoadingPagingData
+    val loadingPagingData: LiveData<Boolean> get() = mLoadingPagingData
+
+    private val mNewDataPage = MutableLiveData<List<Item>>()
+    val newDataPage get() = mNewDataPage
+
+    private var searchResultUi: SearchResultUi? = null
 
     fun fetchItems(query: String) {
         mLoadingData.value = true
@@ -32,7 +37,8 @@ class HomeViewModel @Inject constructor(
                     is Result.Success -> {
                         result.data.let {
                             paging.value = it.paging
-                            mSearchData.value = SearchResultUi(it.paging.total, it.paging.offset, it.query, it.results.toMutableList())
+                            searchResultUi = SearchResultUi(it.paging.total, it.paging.offset, it.query, it.results.toMutableList())
+                            mSearchData.value = searchResultUi
                         }
                     }
                     is Result.Error -> {
@@ -45,16 +51,17 @@ class HomeViewModel @Inject constructor(
     }
 
     fun fetchMoreItems() {
-        mSearchData.value?.let { searchResultUi ->
+        searchResultUi?.let { searchResultUi ->
             mLoadingPagingData.value = true
-            val offset = searchResultUi.offset + 1
             viewModelScope.launch {
-                searchDataUseCase.invoke(searchResultUi.query, offset).let { result ->
+                searchDataUseCase.invoke(searchResultUi.query, searchResultUi.offset + 1).let { result ->
                     when (result) {
                         is Result.Success -> {
                             result.data.let {
                                 paging.value = it.paging
-                                mSearchData.value = SearchResultUi(it.paging.total, it.paging.offset, it.query, addNextElements(it.results, searchResultUi.items))
+                                searchResultUi.offset = it.paging.offset
+                                searchResultUi.items.addAll(it.results)
+                                mNewDataPage.value = it.results
                             }
                         }
                         is Result.Error -> {
@@ -66,10 +73,4 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
-    private fun addNextElements(elements: List<Item>, actualItems: MutableList<Item>): MutableList<Item> {
-        actualItems.addAll(elements)
-        return actualItems
-    }
-
 }
