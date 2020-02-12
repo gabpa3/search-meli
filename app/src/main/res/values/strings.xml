@@ -1,11 +1,13 @@
 <resources>
-    <string name="app_name">search-meli</string>
+    <string name="app_name">Search Meli</string>
     <string name="home_landing_title">Buscá lo que gustes</string>
     <string name="search_query_hint">Buscar producto</string>
     <string name="search">Buscar</string>
     <string name="progress_text">Cargando&#8230;</string>
 
     <string name="home_total_result">%1$s resultados</string>
+
+    <string name="detail_toolbar_title">Producto</string>
 
 
     <!-- Transition name-->

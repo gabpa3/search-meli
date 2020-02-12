@@ -5,6 +5,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -70,7 +71,10 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
             with(data) {
                 extras?.let {
                     val query = it.getString(Constants.QUERY_KEY)
-                    if (query != null) viewModel.fetchItems(query)
+                    if (!TextUtils.isEmpty(query)) {
+                        loadingNewSearch()
+                        viewModel.fetchItems(query!!)
+                    }
                 }
             }
         }
@@ -135,6 +139,11 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
 
     private fun loadingPagingData(value: Boolean) {
         progressPagingLayout.visibility = if (value) View.VISIBLE else View.GONE
+    }
+
+    private fun loadingNewSearch() {
+        group.visibility = View.GONE
+        landingLayout.visibility = View.VISIBLE
     }
 
 }
