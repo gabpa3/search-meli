@@ -14,14 +14,11 @@ abstract class EndlessPagingScrollListener(
 
         if (dy < 0 || isLoading()) return
 
-        val visibleItemCount = layoutManager.childCount
         val totalItemCount =  layoutManager.itemCount
-
         val lastVisibleItemPositions = layoutManager.findLastVisibleItemPositions(null)
-
         val lastVisibleItemPosition = getLastVisibleItem(lastVisibleItemPositions)
 
-        if (totalItemCount - visibleItemCount <= lastVisibleItemPosition + ITEMS_TO_SEE) {
+        if (totalItemCount - lastVisibleItemPosition <= ITEMS_TO_SEE) {
             recyclerView.post(loadMoreRunnable)
         }
     }
