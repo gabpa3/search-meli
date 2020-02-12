@@ -10,6 +10,7 @@
         <item name="colorSecondary">@color/light_green_700</item>
         <item name="colorSecondaryVariant">@color/light_green_800</item>
         <item name="android:textColor">@color/gray_900</item>
+        <item name="android:fontFamily">@font/nunito_sans_semibold</item>
         <item name="android:windowBackground">@color/gray_300</item>
         <item name="android:statusBarColor" tools:targetApi="23">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>

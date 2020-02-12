@@ -9,6 +9,9 @@
 
     <string name="detail_toolbar_title">Producto</string>
 
+    <string name="example_title">Bota Hombre Cuero Borcego Bolita Briganti Zapato - Hcbo00902"</string>
+    <string name="example_price">$ 4699</string>
+
 
     <!-- Transition name-->
     <string name="transition_search_back">transition_search_back</string>
