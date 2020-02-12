@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class ItemDto(
     @SerializedName("id") val id: String,
     @SerializedName("title") val title: String,
-    @SerializedName("price") val price: Int,
+    @SerializedName("price") val price: Double,
     @SerializedName("thumbnail") val thumbnail: String,
     @SerializedName("pictures") val pictures: List<PictureDto>
 )
