@@ -37,10 +37,12 @@ class SearchResultAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Item, listener: ItemListener<Item>) {
+            val context = itemView.context
             itemView.run {
                 ImageUtil.loadFull(itemPictureImg, item.thumbnail)
                 itemTitleTx.text = item.title
-                itemPriceTx.text = item.price.toString()
+                itemPriceTx.text = String.format(context.getString(R.string.price_format),
+                    item.currency, item.price.toString())
                 setOnClickListener{listener.onItemClick(item)}
             }
         }

@@ -3,10 +3,10 @@ package com.gabcode.search_meli.ui.detail
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
 import com.gabcode.core.domain.model.Picture
 import com.gabcode.core.extension.inflate
 import com.gabcode.search_meli.R
+import com.gabcode.search_meli.ui.util.ImageUtil
 import kotlinx.android.synthetic.main.item_detail_picture_pager.view.*
 
 class PictureAdapter(
@@ -24,9 +24,7 @@ class PictureAdapter(
 
     override fun onBindViewHolder(holder: PagerVH, position: Int) {
         holder.itemView.run {
-            pictureImg.load(pictures[position].url) {
-                crossfade(true)
-            }
+            ImageUtil.loadUrl(pictureImg, pictures[position].url)
         }
     }
 }

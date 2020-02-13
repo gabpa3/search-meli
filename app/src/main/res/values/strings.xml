@@ -8,9 +8,18 @@
     <string name="home_total_result">%1$s resultados</string>
 
     <string name="detail_toolbar_title">Producto</string>
+    <string name="detail_stock_available">Stock disponible</string>
+    <string name="detail_stock_no_available">Stock no disponible</string>
+
+    <string name="price_format">%1$s %2$s</string>
 
     <string name="example_title">Bota Hombre Cuero Borcego Bolita Briganti Zapato - Hcbo00902"</string>
     <string name="example_price">$ 4699</string>
+    <string name="example_condition">Nuevo</string>
+    <string name="example_Stock">Disponible</string>
+
+    <string name="cloud_no_connection">Sin Conexión</string>
+    <string name="retry_btn">Reintentar</string>
 
 
     <!-- Transition name-->

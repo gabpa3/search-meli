@@ -16,16 +16,21 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.search.SearchActivity">
+        <activity android:name=".ui.search.SearchActivity"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.detail.ItemDetailActivity" />
-        <activity android:name=".ui.home.HomeActivity">
+        <activity android:name=".ui.detail.ItemDetailActivity"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".ui.home.HomeActivity"
+            android:screenOrientation="sensorPortrait"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

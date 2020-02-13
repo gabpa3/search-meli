@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="@dimen/card_bottom_margin"
+    android:foreground="@drawable/ripple_effect"
     app:cardElevation="@dimen/card_elevation"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardPreventCornerOverlap="false">
@@ -26,6 +27,7 @@
 
         <TextView
             android:id="@+id/itemTitleTx"
+            style="@style/TextAppearance.Title.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
@@ -38,11 +40,13 @@
 
         <TextView
             android:id="@+id/itemPriceTx"
+            style="@style/TextAppearance.Relevant.Card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
             android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_small"/>
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            tools:text="@string/example_price" />
 
     </LinearLayout>
 

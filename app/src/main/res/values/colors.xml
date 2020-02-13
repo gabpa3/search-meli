@@ -5,6 +5,7 @@
     <color name="yellow_200">#FFFF00</color>
 
     <color name="amber_500">#FFC107</color>
+    <color name="amber_light">#26FFC107</color>
 
     <color name="light_green_800">#558B2F</color>
     <color name="light_green_700">#689F38</color>

@@ -12,9 +12,19 @@
         <item name="android:letterSpacing">0.01</item>
     </style>
 
-    <style name="TextAppearance." parent="@style/TextAppearance.MaterialComponents.Headline4">
-        <item name="android:fontFamily">@font/nunito_sans_bold</item>
+    <style name="TextAppearance.Relevant" parent="@style/TextAppearance.MaterialComponents.Headline4">
+        <item name="android:fontFamily">@font/nunito_sans_extrabold</item>
         <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">@color/gray_900</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Title.Card">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Relevant.Card">
+        <item name="android:textSize">20sp</item>
     </style>
 
 

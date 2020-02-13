@@ -32,7 +32,7 @@
         style="@style/ToolbarStyle"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:title="@string/detail_toolbar_title"
+        app:title="@string/detail_toolbar_title"
         app:navigationIcon="@drawable/ic_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,9 +54,18 @@
         android:layout_height="@dimen/indicator_size"
         android:layout_alignBottom="@+id/viewPager"
         app:ci_drawable="@drawable/shape_indicator"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/guideline" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/itemConditionTx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/guideline"
+        tools:text="@string/example_condition" />
 
     <TextView
         android:id="@+id/itemTitleTx"
@@ -67,16 +76,41 @@
         android:transitionName="@string/transition_item_title"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager"
-        tools:text="Bota Hombre Cuero Borcego Bolita Briganti Zapato - Hcbo00902" />
+        app:layout_constraintTop_toBottomOf="@+id/itemConditionTx"
+        tools:text="@string/example_title" />
 
     <TextView
         android:id="@+id/itemPriceTx"
+        style="@style/TextAppearance.Relevant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/itemTitleTx"
-        tools:text="@string/example_price"/>
+        tools:text="@string/example_price" />
+
+    <TextView
+        android:id="@+id/itemStockTx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/itemPriceTx"
+        tools:text="@string/example_Stock" />
+
+    <include
+        android:id="@+id/progressLayout"
+        layout="@layout/layout_progressbar"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/noConnectionLayout"
+        android:visibility="gone"
+        layout="@layout/layout_no_connection" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="itemConditionTx,itemTitleTx,itemPriceTx,viewPager,itemStockTx,indicator" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
