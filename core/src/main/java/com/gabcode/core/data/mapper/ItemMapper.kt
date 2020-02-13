@@ -6,22 +6,15 @@ import com.gabcode.core.domain.model.Item
 import com.gabcode.core.data.model.ItemDto
 
 
-fun mapFromDataModel(itemDto: ItemDto): Item {
-    return Item(
-        itemDto.id,
-        itemDto.title,
-        itemDto.price,
-        itemDto.thumbnail,
-        mapPictureListToDomain(itemDto.pictures)
-    )
-}
-
 fun ItemDto.toDomainModel(): Item {
     return Item(
         this.id,
         this.title,
         this.price,
+        this.currency,
         this.thumbnail,
+        this.availableQuantity,
+        this.condition,
         mapPictureListToDomain(this.pictures))
 }
 
