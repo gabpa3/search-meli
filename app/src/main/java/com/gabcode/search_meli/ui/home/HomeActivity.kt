@@ -3,7 +3,6 @@ package com.gabcode.search_meli.ui.home
 import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.Menu
@@ -13,8 +12,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gabcode.core.domain.model.Item
+import com.gabcode.core.extension.handleVisible
 import com.gabcode.search_meli.R
 import com.gabcode.search_meli.ui.Constants
+import com.gabcode.search_meli.ui.base.BaseActivity
 import com.gabcode.search_meli.ui.data.model.SearchResultUi
 import com.gabcode.search_meli.ui.detail.ItemDetailActivity
 import com.gabcode.search_meli.ui.extension.injector
@@ -23,9 +24,10 @@ import com.gabcode.search_meli.ui.search.SearchResultAdapter
 import com.gabcode.search_meli.ui.util.ItemListener
 import com.gabcode.search_meli.ui.util.SpaceItemDecorator
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.layout_no_connection.view.*
 import javax.inject.Inject
 
-class HomeActivity : AppCompatActivity(), ItemListener<Item> {
+class HomeActivity : BaseActivity(), ItemListener<Item> {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -42,6 +44,8 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
         setSupportActionBar(toolbar)
 
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+
+        noConnectionLayout.retryBtn.setOnClickListener { viewModel.retryLastSearch() }
 
         setupObservers()
 
@@ -83,7 +87,7 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
     private fun setupObservers() {
         viewModel.searchData.observe(this, Observer { showData(it) })
         viewModel.loadingData.observe(this, Observer { loadingData(it) })
-
+        viewModel.failureData.observe(this, Observer { handleFailure(it) })
         viewModel.newDataPage.observe(this, Observer { addNextPage(it) })
         viewModel.loadingPagingData.observe(this, Observer { loadingPagingData(it) })
     }
@@ -105,7 +109,7 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
     }
 
     private fun showData(result: SearchResultUi) {
-        group.visibility = View.VISIBLE
+        group.handleVisible(true)
         searchResultAdapter = SearchResultAdapter(result.items, this)
         val total = result.total.toString()
         totalTx.text = String.format(resources.getString(R.string.home_total_result), total)
@@ -133,17 +137,38 @@ class HomeActivity : AppCompatActivity(), ItemListener<Item> {
     }
 
     private fun loadingData(value: Boolean) {
-        landingLayout.visibility = View.GONE
-        progressLayout.visibility = if (value) View.VISIBLE else View.GONE
+        if (value) hideAllSupportView()
+        progressLayout.handleVisible(value)
     }
 
     private fun loadingPagingData(value: Boolean) {
-        progressPagingLayout.visibility = if (value) View.VISIBLE else View.GONE
+        if (value) {
+            hideAllSupportView()
+            group.handleVisible(true)
+        }
+        progressPagingLayout.handleVisible(value)
     }
 
     private fun loadingNewSearch() {
-        group.visibility = View.GONE
-        landingLayout.visibility = View.VISIBLE
+        group.handleVisible(false)
+        landingLayout.handleVisible(true)
     }
 
+    private fun hideAllSupportView() {
+        landingLayout.handleVisible(false)
+        noConnectionLayout.handleVisible(false)
+        notFoundLayout.handleVisible(false)
+    }
+
+    override fun handleVisibleNetworkFailureView() {
+        group.handleVisible(false)
+        landingLayout.handleVisible(false)
+        noConnectionLayout.handleVisible(true)
+    }
+
+    override fun handleVisibleNoDataFoundView() {
+        group.handleVisible(false)
+        landingLayout.handleVisible(false)
+        notFoundLayout.handleVisible(true)
+    }
 }

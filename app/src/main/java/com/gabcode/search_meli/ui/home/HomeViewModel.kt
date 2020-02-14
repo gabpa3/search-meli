@@ -3,6 +3,7 @@ package com.gabcode.search_meli.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.gabcode.core.data.remote.Failure
 import com.gabcode.core.data.remote.Result
 import com.gabcode.core.domain.model.Item
 import com.gabcode.core.domain.model.Paging
@@ -29,6 +30,9 @@ class HomeViewModel @Inject constructor(
 
     private var searchResultUi: SearchResultUi? = null
 
+    // Save last query in case of network failure
+    private var lastQuery: String? = null
+
     fun fetchItems(query: String) {
         mLoadingData.value = true
         viewModelScope.launch {
@@ -36,13 +40,25 @@ class HomeViewModel @Inject constructor(
                 when (result) {
                     is Result.Success -> {
                         result.data.let {
+                            if (it.results.isEmpty()) {
+                                mLoadingData.value = false
+                                mFailureData.value = Failure.NoFoundDataFailure
+                                return@launch
+                            }
+
                             paging.value = it.paging
-                            searchResultUi = SearchResultUi(it.paging.total, it.paging.offset, it.query, it.results.toMutableList())
+                            searchResultUi = SearchResultUi(
+                                it.paging.total,
+                                it.paging.offset,
+                                it.query,
+                                it.results.toMutableList()
+                            )
                             mSearchData.value = searchResultUi
                         }
                     }
                     is Result.Error -> {
-                        mFailureMessage.value = result.message
+                        if (result.failure is Failure.NetworkFailure) lastQuery = query
+                        mFailureData.value = result.failure
                     }
                 }
             }
@@ -65,12 +81,19 @@ class HomeViewModel @Inject constructor(
                             }
                         }
                         is Result.Error -> {
-                            mFailureMessage.value = result.message
+                            mFailureData.value = result.failure
                         }
                     }
                 }
                 mLoadingPagingData.value = false
             }
         }
+    }
+
+    fun retryLastSearch() {
+        if (searchResultUi == null && lastQuery != null)
+            fetchItems(lastQuery!!)
+        else
+            fetchMoreItems()
     }
 }

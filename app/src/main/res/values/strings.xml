@@ -18,9 +18,13 @@
     <string name="example_condition">Nuevo</string>
     <string name="example_Stock">Disponible</string>
 
-    <string name="cloud_no_connection">Sin Conexión</string>
+    <string name="message_no_found_title">No encontramos la busqueda solicitada</string>
+    <string name="message_no_found_subtitle">Realizá una nueva busqueda</string>
+    <string name="message_no_connection">Problemas con la conexión</string>
     <string name="retry_btn">Reintentar</string>
 
+    <string name="error_server">Hubó un problema con la comunicación al servidor</string>
+    <string name="error_generic">Hubó un problema. Intentá más tarde</string>
 
     <!-- Transition name-->
     <string name="transition_search_back">transition_search_back</string>

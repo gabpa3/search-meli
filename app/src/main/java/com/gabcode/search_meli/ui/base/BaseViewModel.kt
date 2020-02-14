@@ -3,6 +3,7 @@ package com.gabcode.search_meli.ui.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.gabcode.core.data.remote.Failure
 
 open class BaseViewModel : ViewModel() {
 
@@ -10,7 +11,7 @@ open class BaseViewModel : ViewModel() {
     val loadingData: LiveData<Boolean>
         get() = mLoadingData
 
-    protected val mFailureMessage = MutableLiveData<String>()
-    val failureMessage: LiveData<String>
-        get() = mFailureMessage
+    protected val mFailureData = MutableLiveData<Failure>()
+    val failureData: LiveData<Failure>
+        get() = mFailureData
 }
