@@ -8,12 +8,12 @@
     </style>
 
     <style name="TextAppearance.Title" parent="@style/TextAppearance.MaterialComponents.Headline5">
-        <item name="android:fontFamily">@font/nunito_sans_bold</item>
+        <item name="fontFamily">@font/nunito_sans_bold</item>
         <item name="android:letterSpacing">0.01</item>
     </style>
 
     <style name="TextAppearance.Relevant" parent="@style/TextAppearance.MaterialComponents.Headline4">
-        <item name="android:fontFamily">@font/nunito_sans_extrabold</item>
+        <item name="fontFamily">@font/nunito_sans_extrabold</item>
         <item name="android:letterSpacing">0.01</item>
         <item name="android:textColor">@color/gray_900</item>
         <item name="android:textStyle">bold</item>

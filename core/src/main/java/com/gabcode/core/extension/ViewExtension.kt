@@ -7,3 +7,7 @@ import androidx.annotation.LayoutRes
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
     LayoutInflater.from(context).inflate(layoutRes, this, false)
+
+fun View.handleVisible(value: Boolean) {
+    this.visibility = if (value) View.VISIBLE else View.GONE
+}
