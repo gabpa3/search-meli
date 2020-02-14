@@ -29,8 +29,8 @@ class SearchRecentAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(value: String, listener: ItemListener<String> ) {
-            itemView.apply {
-                titleRecentTx.text =  value
+            itemView.run {
+                titleRecentTx.text = value
                 setOnClickListener { listener.onItemClick(value) }
             }
         }

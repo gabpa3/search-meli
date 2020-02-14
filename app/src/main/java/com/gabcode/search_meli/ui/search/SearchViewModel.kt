@@ -17,28 +17,32 @@ class SearchViewModel
 ) : BaseViewModel(){
 
     private val mRecentSearchData = MutableLiveData<List<String>>()
-    val recentSearchData: LiveData<List<String>> = mRecentSearchData
+    val recentSearchData: LiveData<List<String>> get() =  mRecentSearchData
 
     init {
         fetchRecentSearches()
     }
 
     private fun fetchRecentSearches() {
-//        mLoadingData.value = true
-//        viewModelScope.launch {
-//            getRecentSearchDataUseCase.invoke().let { result ->
-//                when (result) {
-//                    is Result.Success -> {
-//                        result.data.let {
-//                           mRecentSearchData.value = it.results
-//                        }
-//                    }
-//                    is Result.Error -> {
-//                        mFailureData.value = result.failure
-//                    }
-//                }
-//            }
-//            mLoadingData.value = false
-//        }
+        mLoadingData.value = true
+        viewModelScope.launch {
+            getRecentSearchDataUseCase.invoke().let { result ->
+                when (result) {
+                    is Result.Success -> {
+                        result.data.let {
+                            if (it.values.isEmpty()) {
+                                mLoadingData.value = false
+                                return@launch
+                            }
+                            mRecentSearchData.value = it.values.map { item -> item.title }
+                        }
+                    }
+                    is Result.Error -> {
+                        mFailureData.value = result.failure
+                    }
+                }
+            }
+            mLoadingData.value = false
+        }
     }
 }

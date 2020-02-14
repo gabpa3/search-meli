@@ -2,7 +2,6 @@ package com.gabcode.search_meli.di
 
 import android.app.Application
 import com.gabcode.core.di.DataModule
-import com.gabcode.core.di.DomainModule
 import com.gabcode.core.di.RepositoryModule
 import com.gabcode.search_meli.di.viewmodel.ViewModelModule
 import com.gabcode.search_meli.ui.detail.ItemDetailActivity
@@ -17,7 +16,6 @@ import javax.inject.Singleton
     modules = [
         AppModule::class,
         ViewModelModule::class,
-//        DomainModule::class,
         RepositoryModule::class,
         DataModule::class
     ]

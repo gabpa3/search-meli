@@ -32,6 +32,7 @@ class ItemRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getRecentItemSearched(): Result<RecentSearch> {
+        // TODO("get all recent search from db or preferences")
         val result: List<Item> = listOf(
             Item(id = "1", title = "Motorola"),
             Item(id = "2", title = "Zapatos nike"),
