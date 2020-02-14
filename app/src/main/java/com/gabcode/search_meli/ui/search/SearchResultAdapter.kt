@@ -8,6 +8,7 @@ import com.gabcode.core.extension.inflate
 import com.gabcode.search_meli.R
 import com.gabcode.search_meli.ui.util.ImageUtil
 import com.gabcode.search_meli.ui.util.ItemListener
+import com.gabcode.search_meli.ui.util.formatDecimal
 import kotlinx.android.synthetic.main.item_search_result.view.*
 
 class SearchResultAdapter(
@@ -42,7 +43,7 @@ class SearchResultAdapter(
                 ImageUtil.loadFull(itemPictureImg, item.thumbnail)
                 itemTitleTx.text = item.title
                 itemPriceTx.text = String.format(context.getString(R.string.price_format),
-                    item.currency, item.price.toString())
+                    item.currency, formatDecimal(item.price))
                 setOnClickListener{listener.onItemClick(item)}
             }
         }

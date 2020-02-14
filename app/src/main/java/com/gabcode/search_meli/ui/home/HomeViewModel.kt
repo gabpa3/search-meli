@@ -10,12 +10,13 @@ import com.gabcode.core.domain.model.Paging
 import com.gabcode.core.domain.usecase.SearchDataUseCase
 import com.gabcode.search_meli.ui.base.BaseViewModel
 import com.gabcode.search_meli.ui.data.model.SearchResultUi
+import com.gabcode.search_meli.ui.util.RetryListener
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val searchDataUseCase: SearchDataUseCase
-) : BaseViewModel(){
+) : BaseViewModel(), RetryListener {
 
     private val paging = MutableLiveData<Paging>()
 
@@ -57,7 +58,7 @@ class HomeViewModel @Inject constructor(
                         }
                     }
                     is Result.Error -> {
-                        if (result.failure is Failure.NetworkFailure) lastQuery = query
+                        if (result.failure is Failure.NetworkFailure) this@HomeViewModel.lastQuery = query
                         mFailureData.value = result.failure
                     }
                 }
@@ -90,7 +91,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun retryLastSearch() {
+    override fun retryLastRequest() {
         if (searchResultUi == null && lastQuery != null)
             fetchItems(lastQuery!!)
         else

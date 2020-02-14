@@ -18,9 +18,15 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+    abstract fun setupObservers()
+
+    abstract fun loadingData(value: Boolean)
+
     abstract fun handleVisibleNetworkFailureView()
 
     abstract fun handleVisibleNoDataFoundView()
+
+    abstract fun hideAllSupportView()
 
     private fun handleVisibleServerFailureView(message: String?) {
         toast(message ?: getString(R.string.error_server))
@@ -33,6 +39,4 @@ abstract class BaseActivity : AppCompatActivity() {
     internal fun showSnackbar(view: View, message: String) {
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
     }
-
-
 }

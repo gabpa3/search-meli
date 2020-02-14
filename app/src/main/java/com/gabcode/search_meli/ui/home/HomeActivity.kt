@@ -45,7 +45,7 @@ class HomeActivity : BaseActivity(), ItemListener<Item> {
 
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
-        noConnectionLayout.retryBtn.setOnClickListener { viewModel.retryLastSearch() }
+        noConnectionLayout.retryBtn.setOnClickListener { viewModel.retryLastRequest() }
 
         setupObservers()
 
@@ -84,7 +84,7 @@ class HomeActivity : BaseActivity(), ItemListener<Item> {
         }
     }
 
-    private fun setupObservers() {
+    override fun setupObservers() {
         viewModel.searchData.observe(this, Observer { showData(it) })
         viewModel.loadingData.observe(this, Observer { loadingData(it) })
         viewModel.failureData.observe(this, Observer { handleFailure(it) })
@@ -136,7 +136,7 @@ class HomeActivity : BaseActivity(), ItemListener<Item> {
         startActivity(intent)
     }
 
-    private fun loadingData(value: Boolean) {
+    override fun loadingData(value: Boolean) {
         if (value) hideAllSupportView()
         progressLayout.handleVisible(value)
     }
@@ -154,12 +154,6 @@ class HomeActivity : BaseActivity(), ItemListener<Item> {
         landingLayout.handleVisible(true)
     }
 
-    private fun hideAllSupportView() {
-        landingLayout.handleVisible(false)
-        noConnectionLayout.handleVisible(false)
-        notFoundLayout.handleVisible(false)
-    }
-
     override fun handleVisibleNetworkFailureView() {
         group.handleVisible(false)
         landingLayout.handleVisible(false)
@@ -170,5 +164,11 @@ class HomeActivity : BaseActivity(), ItemListener<Item> {
         group.handleVisible(false)
         landingLayout.handleVisible(false)
         notFoundLayout.handleVisible(true)
+    }
+
+    override fun hideAllSupportView() {
+        landingLayout.handleVisible(false)
+        noConnectionLayout.handleVisible(false)
+        notFoundLayout.handleVisible(false)
     }
 }

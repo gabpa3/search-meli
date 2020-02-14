@@ -22,21 +22,10 @@ object NetworkHelper {
             } catch (throwable: Throwable) {
                 when (throwable) {
                     is IOException -> Result.Error(Failure.NetworkFailure)
-                    is HttpException -> convertErrorBody(throwable)
-//                    else -> Result.Error.GenericFailure
+                    is HttpException -> Result.Error(Failure.ServerFailure(throwable.message))
+                    else -> Result.Error(Failure.GenericFailure)
                 }
-
-                Result.Error(Failure.GenericFailure)
             }
         }
-    }
-
-    private fun convertErrorBody(throwable: HttpException): ApiErrorResponse? {
-        throwable.response()?.errorBody()?.source()?.let {
-            val gson = GsonBuilder().create() // TODO adapter response
-            return ApiErrorResponse("", "",0)
-        }
-
-        return null
     }
 }

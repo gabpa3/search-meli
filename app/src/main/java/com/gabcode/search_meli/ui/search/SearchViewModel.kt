@@ -30,11 +30,11 @@ class SearchViewModel
 //                when (result) {
 //                    is Result.Success -> {
 //                        result.data.let {
-//                            mRecentSearchData.value = it.results
+//                           mRecentSearchData.value = it.results
 //                        }
 //                    }
 //                    is Result.Error -> {
-//                        mFailureMessage.value = result.message
+//                        mFailureData.value = result.failure
 //                    }
 //                }
 //            }
