@@ -68,6 +68,11 @@
         android:visibility="gone"
         layout="@layout/layout_no_connection" />
 
+    <include
+        android:id="@+id/notFoundLayout"
+        android:visibility="gone"
+        layout="@layout/layout_not_found" />
+
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
         android:layout_width="wrap_content"
