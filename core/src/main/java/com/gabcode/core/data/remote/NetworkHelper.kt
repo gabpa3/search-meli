@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.Response
+import java.io.IOException
 
 object NetworkHelper {
 
@@ -16,15 +17,16 @@ object NetworkHelper {
                 val response = call.invoke()
                 when (response.isSuccessful) {
                     true -> Result.Success(transform(response.body()!!))
-                    false -> Result.Error(response.message())
+                    false -> Result.Error(Failure.ServerFailure(response.errorBody().toString()))
                 }
             } catch (throwable: Throwable) {
                 when (throwable) {
+                    is IOException -> Result.Error(Failure.NetworkFailure)
                     is HttpException -> convertErrorBody(throwable)
-
+//                    else -> Result.Error.GenericFailure
                 }
 
-                Result.Error(throwable.message ?: throwable.toString())
+                Result.Error(Failure.GenericFailure)
             }
         }
     }

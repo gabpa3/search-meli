@@ -19,7 +19,7 @@ class ItemRepositoryImpl @Inject constructor(
         return when (networkHandler.isConnected) {
             true -> NetworkHelper.safeRequest(
                 dispatcher, { service.search(query, offset) }, { it.toDomainModel() })
-            false, null -> Result.Error("")
+            false, null -> Result.Error(Failure.NetworkFailure)
         }
     }
 
@@ -27,7 +27,7 @@ class ItemRepositoryImpl @Inject constructor(
         return when (networkHandler.isConnected) {
             true -> NetworkHelper.safeRequest(
                 dispatcher, { service.getItem(id) }, { it.toDomainModel() })
-            false, null -> Result.Error("")
+            false, null -> Result.Error(Failure.NetworkFailure)
         }
     }
 
