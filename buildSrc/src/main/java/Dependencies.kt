@@ -1,6 +1,6 @@
 object Sdk {
-    val min = 22
-    val target = 28
+    val min = 23
+    val target = 31
     val compile = target
 }
 
@@ -15,17 +15,17 @@ object Versions {
     val room = "2.2.3"
     val lifecycle = "2.2.0"
 
-    val kotlin = "1.3.50"
-    val coroutines = "1.3.2"
+    val kotlin = "1.6.21"
+    val coroutines = "1.6.3"
 
     val retrofit = "2.7.1"
-    val okhttp3 = "3.12.0"
+    val okhttp3 = "4.9.3"
 
     val material = "1.2.0-alpha03"
-    val dagger = "2.26"
+    val dagger = "2.39.1"
 
-    val coil = "0.9.5"
-    val circleindicator = "2.1.4"
+    val coil = "1.4.0"
+    val circleindicator = "2.1.6"
 
     val junit = "4.12"
     val test_extension = "1.1.0"
@@ -67,4 +67,5 @@ object Deps {
     val test_extension = "androidx.test.ext:junit:${Versions.test_extension}"
     val test_runner = "androidx.test:runner:${Versions.test_runner}"
     val test_espresso = "androidx.test.espresso:espresso-core:${Versions.test_espresso}"
+    val coroutine_test = "testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
 }

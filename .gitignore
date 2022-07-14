@@ -9,6 +9,15 @@
 /.idea/assetWizardSettings.xml
 .DS_Store
 /build
+/buildSrc
 /captures
 .externalNativeBuild
 .cxx
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/

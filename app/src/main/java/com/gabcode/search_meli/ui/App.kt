@@ -13,11 +13,11 @@ class App : Application(), ComponentProvider {
     }
 
     override val imageLoader: ImageLoader by lazy {
-        ImageLoader(applicationContext){
-            availableMemoryPercentage(0.5)
-            bitmapPoolPercentage(0.5)
-            crossfade(true)
-        }
+        ImageLoader.Builder(applicationContext)
+            .availableMemoryPercentage(0.5)
+            .bitmapPoolPercentage(0.5)
+            .crossfade(true)
+            .build()
     }
 
 }
