@@ -43,7 +43,7 @@ object RestClient {
             val  newRequest = request.newBuilder()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
-                .url(request.url())
+                .url(request.url)
                 .build()
 
             return  chain.proceed(newRequest)
